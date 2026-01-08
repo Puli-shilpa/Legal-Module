@@ -97,6 +97,7 @@ public class CaseService {
 
 	public Case updateCase(@Valid CaseRequest caseRequest) {
 		State state = null;
+		caseValidator.validateUpdateRequest(caseRequest);
 		enrichmentService.enrichUpdateCase(caseRequest);
 		if (caseConfiguration.getIsWorkflowEnabled()) {
 			state = wfService.updateCaseWorkflow(caseRequest);
